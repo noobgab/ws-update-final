@@ -22,6 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// Weather Station Routes
+app.get('/data', function(req, res) {
+	res.send("One set of data (most recent reading)");
+});
+
+app.get('/data/all', function(req, res) {
+	res.send("All of the data");
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
