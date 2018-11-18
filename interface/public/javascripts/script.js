@@ -13,6 +13,6 @@ $(document).ready(function() {
 
     $.get('/data', function(data) {
         $(".rt-humidity").html(data['hr'] + "%");
-        $(".rt-temperature").html(data['hr'] + "*C");
+        $(".rt-temperature").html(data['tr'] + "*C");
     });
 });
