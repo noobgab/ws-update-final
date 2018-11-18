@@ -18,6 +18,10 @@ mycursor = mydb.cursor()
 print("Database connection successful...")
 location = input("Input the location of the weather station: ");
 
+sql = "INSERT INTO location(loc) VALUES('"+loc+"')"
+mycursor.execute(sql)
+mydb.commit()
+
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht_sensor, DHT_PIN)
     
