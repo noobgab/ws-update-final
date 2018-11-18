@@ -8,6 +8,6 @@ $(document).ready(function() {
     });
 
     $.get('/location', function(data) {
-        $(".latest-loc").html("<span style=\"color:#565656;\">@</span> <span style=\"color:#76323f;\">" + data + "</span>");
+        $(".latest-loc").html("<span style=\"color:#565656;\">@</span><span style=\"color:#76323f;\"><u>" + data + "</u></span>");
     });
 });
