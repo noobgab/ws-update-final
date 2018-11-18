@@ -1,7 +1,13 @@
-h4 {
+h5 {
     color: #565656;
 }
 
-h5 {
+h4 {
     color: #76323f;
+}
+
+@media only screen and (max-width:600px) {
+    h4, h5 {
+        font-size: 12px;
+    }
 }
