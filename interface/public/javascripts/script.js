@@ -8,6 +8,6 @@ $(document).ready(function() {
     });
 
     $.get('/location', function(data) {
-        $(".latest-loc").html("Lates Location: " + data);
+        $(".latest-loc").html("<span style=\"color:#565656;\">Lates Location:</span> <span style=\"color:#76323f;\">" + data + "</span>");
     });
 });
