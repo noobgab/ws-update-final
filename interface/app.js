@@ -37,7 +37,7 @@ con.connect(function(err) {
 app.get('/data', function(req, res) {
 	var sql = "SELECT humidity.reading as hr, temperature.reading as tr FROM humidity INNER JOIN temperature ON humidity.readtime = temperature.readtime ORDER BY humidity.readtime DESC LIMIT 1";
 	con.query(sql, function(err, result) {
-		if(result.length == 1) { res.send(result); }
+		if(result.length == 1) { res.send(result[0]); }
 		else { res.send("0"); }
 	});
 });

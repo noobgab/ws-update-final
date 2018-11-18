@@ -12,6 +12,7 @@ $(document).ready(function() {
     });
 
     $.get('/data', function(data) {
-        console.log(data);
+        $(".rt-humidity").html(data['hr'] + "%");
+        $(".rt-temperature").html(data['hr'] + "*C");
     });
 });
