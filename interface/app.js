@@ -45,7 +45,8 @@ app.get('/data/all', function(req, res) {
 app.get('/location', function(req, res) {
 	var sql = "SELECT loc FROM location ORDER BY readtime DESC LIMIT 1";
 	con.query(sql, function(err, result) {
-		console.log(result);
+		if(result.length == 1) { res.send(result[0].loc); }
+		else { res.send("n/a"); }	
 	});
 });
 
