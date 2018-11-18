@@ -6,9 +6,15 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
+
+var con = mysql.createConnection({
+	host: "localhost",
+	user: "pi",
+	password: "Year3",
+	database: "project"
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +27,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+con.connect(function(err) {
+	if(err) throw err;
+	console.log("Database connection successful");
+});
 
 // Weather Station Routes
 app.get('/data', function(req, res) {
@@ -33,7 +43,10 @@ app.get('/data/all', function(req, res) {
 });
 
 app.get('/location', function(req, res) {
-
+	var sql = "SELECT loc FROM location ORDER BY readtime DESC LIMIT 1";
+	con.query(sql, function(err, result) {
+		console.log(result);
+	});
 });
 
 // catch 404 and forward to error handler
