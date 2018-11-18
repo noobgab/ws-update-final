@@ -18,7 +18,7 @@ mycursor = mydb.cursor()
 print("Database connection successful...")
 location = input("Input the location of the weather station: ");
 
-sql = "INSERT INTO location(loc) VALUES('"+loc+"')"
+sql = "INSERT INTO location(loc) VALUES('"+location+"')"
 mycursor.execute(sql)
 mydb.commit()
 
