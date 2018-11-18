@@ -35,7 +35,11 @@ con.connect(function(err) {
 
 // Weather Station Routes
 app.get('/data', function(req, res) {
-	res.send("One set of data (most recent reading)");
+	var sql = "SELECT humidity.reading as hr, temperature.reading as tr FROM humidity INNER JOIN temperature ON humidity.readtime = temperature.readtime ORDER BY humidity.readtime DESC LIMIT 1";
+	con.query(sql, function(err, result) {
+		if(result.length == 1) { res.send(result); }
+		else { res.send("0"); }
+	});
 });
 
 app.get('/data/all', function(req, res) {
