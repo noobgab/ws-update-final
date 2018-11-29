@@ -24,6 +24,8 @@ sql = "INSERT INTO location(loc) VALUES('"+location+"')" # Create the query to s
 mycursor.execute(sql) # Execute the query
 mydb.commit() # Commit the changes
 
+runs = 0
+
 # Infinite loop, with 2 seconds in between each iteration (the sensor can only read data once every 2 seconds)
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht_sensor, DHT_PIN) # Read in the humidity and temperature from the sensor
@@ -36,5 +38,6 @@ while True:
     mycursor.execute(sql) # Execute the query
     mydb.commit() # Commit the changes
 
-    print("Database write complete.") # Output the status to the console
+    print("{}. Data saved: {:0.1f}% , {:0.2f}*C".format(runs,humidity,temperature)) # Output the status to the console
+    runs = runs + 1
     sleep(DELAY_INTERVAL) # wait the specified amount of time

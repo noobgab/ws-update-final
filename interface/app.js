@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+// Local database connection configuration
 var con = mysql.createConnection({
 	host: "localhost",
 	user: "pi",
@@ -28,29 +29,34 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+// Connect to the database, throw an error if something is wrong
 con.connect(function(err) {
 	if(err) throw err;
 	console.log("Database connection successful");
 });
 
-// Weather Station Routes
+/* ===== Weather Station Routes ===== */
+
+// Route '/data' to return the most recent set of readings
 app.get('/data', function(req, res) {
-	var sql = "SELECT humidity.reading as hr, temperature.reading as tr FROM humidity INNER JOIN temperature ON humidity.readtime = temperature.readtime ORDER BY humidity.readtime DESC LIMIT 1";
+	var sql = "SELECT humidity.reading as hr, temperature.reading as tr FROM humidity INNER JOIN temperature ON humidity.readtime = temperature.readtime ORDER BY humidity.readtime DESC LIMIT 1"; // build the query
 	con.query(sql, function(err, result) {
-		if(result.length == 1) { res.send(result[0]); }
-		else { res.send("0"); }
+		if(result.length == 1) { res.send(result[0]); } // if some data was found, return it
+		else { res.send("0"); } // otherwise return 0 (no result found, deal with this in script)
 	});
 });
 
+// Route '/data/all' which will return all the data stored in the database
 app.get('/data/all', function(req, res) {
 	res.send("All of the data");
 });
 
+// Route '/lcoation' which returns the most recent location stored in the database
 app.get('/location', function(req, res) {
-	var sql = "SELECT loc FROM location ORDER BY readtime DESC LIMIT 1";
-	con.query(sql, function(err, result) {
-		if(result.length == 1) { res.send(result[0].loc); }
-		else { res.send("n/a"); }	
+	var sql = "SELECT loc FROM location ORDER BY readtime DESC LIMIT 1"; // build the query
+	con.query(sql, function(err, result) { // run the query
+		if(result.length == 1) { res.send(result[0].loc); } // if a location was found, return it
+		else { res.send("n/a"); } // otherwise return "n/a"
 	});
 });
 
