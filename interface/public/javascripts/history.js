@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var ctx = $("#historicDataChart");
+    var ctx = document.getElementById("historicDataChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
