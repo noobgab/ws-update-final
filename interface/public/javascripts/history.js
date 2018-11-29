@@ -1,8 +1,13 @@
 $(document).ready(function() {
-    var ctx = document.getElementById("historicDataChart").getContext('2d');
-    
-    var myChart = new Chart(ctx, {
+    var ctx = $("#historicDataChart");
+    var lineChart = new Chart(ctx, {
         type: 'line',
-        data: [20, 14, 6, 12, 17, 25]
+        data: {
+            labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+            datasets: [{
+                label: "2015",
+                data: [10,8,6,5,12,8,16,17,6,7,6,10]
+            }]
+        }
     });
 });
