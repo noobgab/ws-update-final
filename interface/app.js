@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
+var historyRouter = require('./routes/history');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/history', historyRouter);
 
 // Connect to the database, throw an error if something is wrong
 con.connect(function(err) {
