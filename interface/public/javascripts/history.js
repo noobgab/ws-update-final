@@ -6,7 +6,7 @@ $(document).ready(function() {
             labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
             datasets: [{
                 label: "Humidity",
-                data: [10,8,6,5,12,8,16,17,6,7,6,10],
+                data: [20,16,5,8,6,11,15,17,16,12,8,6],
                 backgroundColor: ['rgba(60, 172, 242, 0.2)'],
                 borderColor: ['rgba(60, 172, 242, 1)']
             }, {
