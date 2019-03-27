@@ -14,7 +14,7 @@ mydb = mysql.connector.connect(
     database = "project"
 )
 
-# Have a variably that holds our database link
+# Have a variably that holds our database link for insertion
 mycursor = mydb.cursor()
 
 print("Database connection successful...") # Inform the user
