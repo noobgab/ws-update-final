@@ -4,7 +4,7 @@ from time import sleep # Library which allows us to "sleep", or delay the execut
 
 dht_sensor = Adafruit_DHT.DHT22 # Specify which sensor we are using
 DHT_PIN = 2 # Specify the GPIO number where the sensor is connected
-DELAY_INTERVAL = 2 # Specify the wait time between iterations
+DELAY_INTERVAL = 3 # Specify the wait time between iterations
 
 # Initialise the database connection
 mydb = mysql.connector.connect(
@@ -24,8 +24,6 @@ sql = "INSERT INTO location(loc) VALUES('"+location+"')" # Create the query to s
 mycursor.execute(sql) # Execute the query
 mydb.commit() # Commit the changes
 
-runs = 0
-
 # Infinite loop, with 2 seconds in between each iteration (the sensor can only read data once every 2 seconds)
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht_sensor, DHT_PIN) # Read in the humidity and temperature from the sensor
@@ -38,6 +36,5 @@ while True:
     mycursor.execute(sql) # Execute the query
     mydb.commit() # Commit the changes
 
-    print("{}. Data saved: {:0.1f}% , {:0.2f}*C".format(runs,humidity,temperature)) # Output the status to the console
-    runs = runs + 1
+    print("Data saved: {:0.1f}% , {:0.2f}*C".format(humidity,temperature)) # Output the status to the console
     sleep(DELAY_INTERVAL) # wait the specified amount of time
