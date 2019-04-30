@@ -1,23 +1,24 @@
 function updateRTdata() {
-    $.get('/location', function(data) {
-        $(".latest-loc").html("<span style=\"color:#565656;\">@</span><span style=\"color:#76323f;\"><u>" + data + "</u></span>");
-    });
-
-    $.get('/data', function(data) {
-        $(".rt-humidity").html(data['hr'] + "%");
-        $(".rt-temperature").html(data['tr'] + "*C");
+    $.get('/data', (data) => {
+        if(data != "0") {
+            // Update reading fields
+            $(".location-display").html("@ " + data.reading_location);
+            $(".temp-reading").html(data.temperature + "&deg;C");
+            $(".hum-reading").html(data.humidity + "%");
+        }
     });
 }
 
-$(document).ready(function() {
-    $(".real-time-btn").click(function() {
-        console.log("Real time btn clicked");
+$(document).ready(() => {
+    let logo = $(".icon");
+    logo.html('<ion-icon name="cloud"></ion-icon>');
+
+    logo.hover(() => {
+        logo.html('<ion-icon name="rainy"></ion-icon>');
+    }, () => {
+        logo.html('<ion-icon name="cloud"></ion-icon>');
     });
 
-    $(".historic-data-btn").click(function() {
-        console.log("Historic data btn clicked");
-    });
-    
     updateRTdata();
-    setInterval(updateRTdata, 2000);    
+    setInterval(updateRTdata, 2000);
 });

@@ -18,23 +18,15 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 print("Database connection successful...") # Inform the user
-location = input("Input the location of the weather station: "); # Prompt the user for the location of the station
-
-sql = "INSERT INTO location(loc) VALUES('"+location+"')" # Create the query to store the location
-mycursor.execute(sql) # Execute the query
-mydb.commit() # Commit the changes
+location = raw_input("Input the location of the weather station: "); # Prompt the user for the location of the station
 
 # Infinite loop, with 2 seconds in between each iteration (the sensor can only read data once every 2 seconds)
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht_sensor, DHT_PIN) # Read in the humidity and temperature from the sensor
     
-    sql = "INSERT INTO humidity(reading) VALUES('{:0.1f}%')".format(humidity) # Create the insertion query
-    mycursor.execute(sql) # Execute the query
-    mydb.commit() # Commit the changes
-    
-    sql = "INSERT INTO temperature(reading) VALUES('{:0.2f}%')".format(temperature) # Create the insertion query
+    sql = "INSERT INTO data(reading_location, humidity, temperature) VALUES('{}', '{:0.1f}%', '{:0.2f}%')".format(location, humidity, temperature)
     mycursor.execute(sql) # Execute the query
     mydb.commit() # Commit the changes
 
-    print("Data saved: {:0.1f}% , {:0.2f}*C".format(humidity,temperature)) # Output the status to the console
-    sleep(DELAY_INTERVAL) # wait the specified amount of time
+    print("Reading @ {} => Humidity: {:0.1f}% , Temperature: {:0.2f}*C".format(location, humidity, temperature)) # Output the status to the console
+    sleep(DELAY_INTERVAL) # wait the specified amount of time before taking another reading (the sensor takes about 3 seconds to update)
