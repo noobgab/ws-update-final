@@ -4,12 +4,17 @@ html, body {
     width: 100%;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(#6fe495, #43aaec);
+    background-image: linear-gradient(#6fe495, #20a96a);
+    -webkit-transition: background 0.4s ease;
+    -moz-transition: background 0.4s ease;
+    -o-transition: background 0.4s ease;
+    transition: background 0.4s ease;
 }
 
 header {
     text-align: center;
-    padding: 1rem 0;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
 }
 
 .icon {
@@ -63,7 +68,6 @@ nav a:hover {
 .data-readings {
     padding: 15px;
     text-align: center;
-    margin-top: 20px;
 }
 
 .title {
@@ -93,4 +97,41 @@ nav a:hover {
 .reading {
     font-weight: bold;
     font-size: 0.9rem;
+}
+
+.predictions {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.predictions-container {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    padding: 5px;
+    width: 85%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.data-links {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.data-links a {
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    padding: 5px 0;
+    color: #e4f9f0;
+    background: rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    border-radius: 10px;
+    line-height: 2.1rem;
+    font-size: 0.7rem;
+}
+
+.data-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: underline;
 }

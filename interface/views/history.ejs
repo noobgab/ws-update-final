@@ -10,20 +10,35 @@
 	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </head>
 <body>
-    <header>
-        <div class="icon">
-            <ion-icon name="cloud"></ion-icon>
-				</div>
-    </header>
+        <header>
+                <div class="icon">
+                    <ion-icon name="cloud"></ion-icon>
+                        </div>
+                        
+                        <div class="location">
+                            <h2 class="location-display">n/a</h2>
+                        </div>
+            </header>
+        
+            <nav>
+                <a href="/"><ion-icon name="pulse"></ion-icon>&nbsp;&nbsp;Live Data</a>
+                <a href="/history"><ion-icon name="filing"></ion-icon>&nbsp;&nbsp;Historical Data</a>
+            </nav>
+                
+            <section class="predictions">
+                <div class="predictions-container">
+                    Tomorrows Prediction: Temperatures between <b><span class="prediction-min">0</span>&deg;C</b> and <b><span class="prediction-max">0</span>&deg;C</b>
+                </div>
+            </section>
 
-    <nav>
-        <a href="/"><ion-icon name="pulse"></ion-icon>&nbsp;&nbsp;Live Data</a>
-        <a href="/history"><ion-icon name="filing"></ion-icon>&nbsp;&nbsp;Historical Data</a>
-		</nav>
+    <section class="data-links">
+        <a href="/data">View Latest Reading (JSON)</a>
+        <a href="/data/all">View Historic Data (JSON)</a>
+    </section>
 
     <section class="data-history">
 
-			<canvas id="line-chart" width="800" height="450" style="margin:0 auto;max-width:800px; max-height: 450px;margin-top:3rem;"></canvas>
+			<canvas id="line-chart" width="800" height="450" style="margin:0 auto;max-width:800px; max-height: 450px;margin-top:3rem;color:#fff;"></canvas>
     </section>
 
     <script src="/javascripts/jquery.js"></script>

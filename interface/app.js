@@ -48,7 +48,7 @@ app.get('/data', function(req, res) {
 
 // Route '/data/all' which will return all the data stored in the database
 app.get('/data/all', function(req, res) {
-	let sql = "SELECT * FROM data ORDER BY data_id DESC";
+	let sql = "SELECT * FROM data ORDER BY data_id ASC";
 	con.query(sql, (err, result) => {
 		console.log(result.length);
 		res.send(result);

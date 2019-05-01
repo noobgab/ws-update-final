@@ -24,7 +24,7 @@ print("Database connection successful...") # Inform the user
 location = "WeatherStation"
 #location = raw_input("Input the location of the weather station: "); # Prompt the user for the location of the station
 
-print("The location location of the weather station has been set to: {}")
+print("The location location of the weather station has been set to: {}".format(location))
 
 training = pd.read_csv('sample_training.csv')
 training.columns = ["1"]
