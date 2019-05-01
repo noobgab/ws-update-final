@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title><%= title %></title>
-	<link rel="stylesheet" href="/stylesheets/icon.css">
-	<link rel="stylesheet" href="/stylesheets/materialize.min.css">
-	<link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WeatherPi Project</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </head>
-<body style="background:#d7cec7;">
-	<nav style="background:#fff;">
-		<div class="nav-wrapper container">
-			<ul id="nav-mobile" class="right">
-				<li><a href="/" class="waves-effect real-time-btn" style="color:#c09f80;">Real-Time</a></li>
-				<li><a href="/history" class="waves-effect historic-data-btn" style="color:#c09f80;">Historic Data</a></li>
-			</ul>
-		</div>
-	</nav>
-	
-	<div class="container">
-		<h3>Historic Data</h3>
-		<canvas id="historicDataChart" width="800" height="800"></canvas>
-	</div>
+<body>
+    <header>
+        <div class="icon">
+            <ion-icon name="cloud"></ion-icon>
+				</div>
+    </header>
 
-	<script src="/javascripts/jquery-3.3.1.min.js"></script>
-	<script src="/javascripts/materialize.min.js"></script>
+    <nav>
+        <a href="/"><ion-icon name="pulse"></ion-icon>&nbsp;&nbsp;Live Data</a>
+        <a href="/history"><ion-icon name="filing"></ion-icon>&nbsp;&nbsp;Historical Data</a>
+		</nav>
+
+    <section class="data-history">
+
+			<canvas id="line-chart" width="800" height="450" style="margin:0 auto;max-width:800px; max-height: 450px;margin-top:3rem;"></canvas>
+    </section>
+
+    <script src="/javascripts/jquery.js"></script>
 	<script src="/javascripts/chart.js"></script>
-	<script src="/javascripts/history.js"></script>
+	<script src="/javascripts/historic.js"></script>
 </body>
 </html>

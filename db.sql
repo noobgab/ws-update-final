@@ -28,6 +28,8 @@ CREATE TABLE `data` (
   `reading_location` varchar(50) DEFAULT NULL,
   `humidity` float DEFAULT NULL,
   `temperature` float DEFAULT NULL,
+  `prediction_max` float DEFAULT NULL,
+  `prediction_min` float DEFAULT NULL,
   /*`pressure` float DEFAULT NULL,*/
   PRIMARY KEY (`data_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;

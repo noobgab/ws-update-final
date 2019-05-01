@@ -39,8 +39,8 @@ con.connect(function(err) {
 
 // Route '/data' to return the most recent set of readings
 app.get('/data', function(req, res) {
-	var sql = "SELECT * FROM data ORDER BY data_id DESC LIMIT 1"; // build the query
-	con.query(sql, function(err, result) {
+	let sql = "SELECT * FROM data ORDER BY data_id DESC LIMIT 1"; // build the query
+	con.query(sql, (err, result) => {
 		if(result.length == 1) { res.send(result[0]); } // if some data was found, return it
 		else { res.send("0"); } // otherwise return 0 (no result found, deal with this in script)
 	});
@@ -48,7 +48,11 @@ app.get('/data', function(req, res) {
 
 // Route '/data/all' which will return all the data stored in the database
 app.get('/data/all', function(req, res) {
-	res.send("All of the data");
+	let sql = "SELECT * FROM data ORDER BY data_id DESC";
+	con.query(sql, (err, result) => {
+		console.log(result.length);
+		res.send(result);
+	});
 });
 
 // Route '/history' will load up the historic data page
@@ -58,7 +62,7 @@ app.get('/history', function(req, res) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
